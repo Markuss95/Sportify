@@ -65,7 +65,9 @@ const NavContainer = styled.nav`
     }
     .nav-links {
       display: flex;
+      position: relative;
       justify-content: center;
+      left: 15rem;
       margin: 0 0.5rem;
       a {
         color: var(--clr-grey-3);
