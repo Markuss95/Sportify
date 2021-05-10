@@ -4,8 +4,11 @@ import logo from "../assets/logo.svg";
 import { FaTimes } from "react-icons/fa";
 import { links } from "../utlis/constants";
 import { CartButtons } from "./index";
+import { useProductsProvider } from "../context/products_context";
 const Sidebar = () => {
   const isOpen = true;
+  const data = useProductsProvider();
+
   return (
     <SidebarContainer>
       <div className={`${isOpen ? "sidebar sidebar-show" : "sidebar"}`}>
@@ -21,7 +24,6 @@ const Sidebar = () => {
           {links.map(({ id, text, url }) => {
             return (
               <li key={id}>
-                {console.log(text)}
                 <Link to={url}>{text}</Link>
               </li>
             );
