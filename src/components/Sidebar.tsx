@@ -8,7 +8,7 @@ import { useProductsProvider } from "../context/products_context";
 const Sidebar = () => {
   const isOpen = true;
   const data = useProductsProvider();
-
+  console.log(data);
   return (
     <SidebarContainer>
       <div className={`${isOpen ? "sidebar sidebar-show" : "sidebar"}`}>
