@@ -2,7 +2,7 @@ import { links } from "../utlis/constants";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CartButtons from "./CartButtons";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo (2).svg";
 import styled from "styled-components";
 import { useProductsProvider } from "../context/products_context";
 const Navbar = () => {
