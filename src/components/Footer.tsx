@@ -15,7 +15,6 @@ const Wrapper = styled.footer`
   justify-content: center;
   align-items: center;
   height: 5rem;
-  margin-top: 2rem;
   z-index: 999;
   color: white;
   background: var(--clr-black);

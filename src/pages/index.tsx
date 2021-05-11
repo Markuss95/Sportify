@@ -1,3 +1,4 @@
 import Home from "./HomePage";
+import Error from "./ErrorPage";
 
-export { Home };
+export { Home, Error };

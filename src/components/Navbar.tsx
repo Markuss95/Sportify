@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 import CartButtons from "./CartButtons";
 import logo from "../assets/logo.svg";
 import styled from "styled-components";
+import { useProductsProvider } from "../context/products_context";
 const Navbar = () => {
+  const data = useProductsProvider();
   return (
     <NavContainer>
       <div className="nav-header">
         <Link to="/">
           <img src={logo} alt="Sportify" />
         </Link>
-        <button type="button" className="nav-toggle">
+        <button
+          type="button"
+          className="nav-toggle"
+          onClick={data?.openSidebar}
+        >
           <FaBars />
         </button>
       </div>
@@ -33,7 +39,7 @@ const Navbar = () => {
 };
 
 const NavContainer = styled.nav`
-  height: 5rem;
+  height: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;

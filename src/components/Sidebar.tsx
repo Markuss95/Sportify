@@ -8,15 +8,23 @@ import { useProductsProvider } from "../context/products_context";
 const Sidebar = () => {
   const isOpen = true;
   const data = useProductsProvider();
-  console.log(data);
+
   return (
     <SidebarContainer>
-      <div className={`${isOpen ? "sidebar sidebar-show" : "sidebar"}`}>
+      <div
+        className={`${
+          data?.isSidebarOpen ? "sidebar sidebar-show" : "sidebar"
+        }`}
+      >
         <div className="sidebar-header">
           <Link to="/">
             <img src={logo} alt="Sportify" />
           </Link>
-          <button type="button" className="sidebar-close">
+          <button
+            type="button"
+            className="sidebar-close"
+            onClick={data?.closeSidebar}
+          >
             <FaTimes />
           </button>
         </div>
@@ -24,13 +32,17 @@ const Sidebar = () => {
           {links.map(({ id, text, url }) => {
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link to={url} onClick={data?.closeSidebar}>
+                  {text}
+                </Link>
               </li>
             );
           })}
           <li>
             {" "}
-            <Link to="/">Checkout</Link>
+            <Link to="/" onClick={data?.closeSidebar}>
+              Checkout
+            </Link>
           </li>
         </ul>
         <div className="button-container">
