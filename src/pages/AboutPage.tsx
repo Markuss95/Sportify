@@ -35,10 +35,7 @@ const Wrapper = styled.div`
   margin-top: 5rem;
   margin-bottom: 5rem;
   img {
-    border-radius: var(--radius);
-    width: 100%;
-    min-height: 400px;
-    display: inline-block;
+    display: none;
   }
   .title {
     text-align: left;
@@ -56,6 +53,12 @@ const Wrapper = styled.div`
 
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
+    img {
+      border-radius: var(--radius);
+      width: 100%;
+      min-height: 400px;
+      display: inline-block;
+    }
   }
 `;
 export default AboutPage;

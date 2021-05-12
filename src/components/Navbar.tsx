@@ -32,7 +32,9 @@ const Navbar = () => {
             );
           })}
         </ul>
-        <CartButtons />
+        <div className="cart-buttons">
+          <CartButtons />
+        </div>
       </div>
     </NavContainer>
   );
@@ -68,12 +70,16 @@ const NavContainer = styled.nav`
     .nav-list {
       display: flex;
       position: absolute;
+      margin-left: 17vw;
+      justify-content: center;
+      align-items: center;
     }
+
     .nav-links {
       display: flex;
       position: relative;
       justify-content: center;
-      left: 15rem;
+      left: 6.1rem;
       margin: 0 0.5rem;
       a {
         color: var(--clr-grey-3);

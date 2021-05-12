@@ -27,6 +27,8 @@ const Wrapper = styled.div`
   display: flex;
   margin-left: 25rem;
   font-size: 1.5rem;
+  margin-right: 1.8rem;
+
   a {
     color: var(--clr-grey-1);
   }

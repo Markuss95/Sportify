@@ -1,5 +1,13 @@
+import styled from "styled-components";
+import { Hero } from "../components";
 const HomePage = () => {
-  return <h4>home page</h4>;
+  return (
+    <Wrapper>
+      <Hero />
+    </Wrapper>
+  );
 };
+
+const Wrapper = styled.main``;
 
 export default HomePage;
