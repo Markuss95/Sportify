@@ -48,6 +48,7 @@ const Wrapper = styled.div`
     display: grid;
     gap: 2.5rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding-bottom: 2rem;
   }
   .service-card {
     background: var(--clr-primary-7);
