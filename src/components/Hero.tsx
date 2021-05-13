@@ -58,6 +58,7 @@ const Wrapper = styled.div`
     }
     .hero-text {
       margin: auto;
+      text-align: left;
       h2 {
         margin-bottom: 2rem;
       }
