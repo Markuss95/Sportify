@@ -11,8 +11,17 @@ const Contact = () => {
             obcaecati fugiat ratione neque repellendus numquam?
           </p>
         </div>
-        <form className="contact-form">
-          <input type="text" placeholder="Enter Email" className="form-input" />
+        <form
+          action="https://formspree.io/f/xrgrpqkz"
+          method="POST"
+          className="contact-form"
+        >
+          <input
+            type="text"
+            placeholder="Enter Email"
+            className="form-input"
+            name="_replyto"
+          />
           <button type="submit" className="btn">
             {" "}
             Subscribe
