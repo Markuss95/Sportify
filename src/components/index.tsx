@@ -9,6 +9,7 @@ import Contact from "./Contact";
 import FeaturedProducts from "./FeaturedProducts";
 import Loading from "./Loading";
 import Error from "./Error";
+import Product from "./Product";
 
 export {
   Navbar,
@@ -22,4 +23,5 @@ export {
   FeaturedProducts,
   Loading,
   Error,
+  Product,
 };

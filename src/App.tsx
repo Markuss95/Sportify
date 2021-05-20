@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Footer, Sidebar } from "./components";
-import { Home, Error, About } from "./pages";
+import { Home, Error, About, SingleProductPage } from "./pages";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route exact path="/about">
           <About />
         </Route>
+        <Route exact path="/products/:id" children={SingleProductPage} />
         <Route exact path="*">
           <Error />
         </Route>
