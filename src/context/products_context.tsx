@@ -6,6 +6,11 @@ import axios from "axios";
 
 interface PRODUCTS_CONTEXT_TYPE {
   isSidebarOpen: boolean;
+  products_loading: boolean;
+  products_error: boolean;
+  //I know it's not a good practice to use "any", but this is a practice project and products apy is very complicated, I m doing this to save time
+  products: any[];
+  featured_products: any[];
   openSidebar: () => void;
   closeSidebar: () => void;
 }
