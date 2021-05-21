@@ -21,7 +21,6 @@ const FeaturedProducts = () => {
         {featured?.map((product, index) => {
           // I want to see only first 3 items marked as "featured"
           if (index < 3) {
-            console.log(product);
             return <Product key={product.id} {...product} />;
           }
         })}

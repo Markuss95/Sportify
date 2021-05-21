@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/about">
           <About />
         </Route>
-        <Route exact path="/products/:id" children={SingleProductPage} />
+        <Route exact path="/products/:id" children={<SingleProductPage />} />
         <Route exact path="*">
           <Error />
         </Route>
