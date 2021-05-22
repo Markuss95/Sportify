@@ -202,3 +202,8 @@ p {
 .page {
   min-height: calc(100vh - (20vh + 10rem));
 }
+.product-price {
+  display: inline;
+  font-size: 1.1rem;
+  color: var(--clr-orange);
+}

@@ -2,6 +2,7 @@ interface STATETYPE {
   isSidebarOpen: boolean;
   products_loading: boolean;
   products_error: boolean;
+  selected_product: any;
   //I know it's not a good practice to use "any", but this is a practice project and products apy is very complicated, I m doing this to save time
   products: any[];
   featured_products: any[];

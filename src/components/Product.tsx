@@ -69,11 +69,7 @@ const Wrapper = styled.div`
     letter-spacing: 0.08rem;
     font-size: 1.1rem;
   }
-  .product-price {
-    display: inline;
-    font-size: 1.1rem;
-    color: var(--clr-orange);
-  }
+
   @media (min-width: 992px) {
     padding-top: 3rem;
   }

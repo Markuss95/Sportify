@@ -10,6 +10,7 @@ import FeaturedProducts from "./FeaturedProducts";
 import Loading from "./Loading";
 import Error from "./Error";
 import Product from "./Product";
+import Stars from "./Stars";
 
 export {
   Navbar,
@@ -24,4 +25,5 @@ export {
   Loading,
   Error,
   Product,
+  Stars,
 };

@@ -11,6 +11,7 @@ interface PRODUCTS_CONTEXT_TYPE {
   //I know it's not a good practice to use "any", but this is a practice project and products apy is very complicated, I m doing this to save time
   products: any[];
   featured_products: any[];
+  selected_product: any;
   openSidebar: () => void;
   closeSidebar: () => void;
 }
@@ -21,6 +22,7 @@ const initialState = {
   products_error: false,
   products: [],
   featured_products: [],
+  selected_product: {},
 };
 const ProductsContext = React.createContext<PRODUCTS_CONTEXT_TYPE | null>(null);
 export const ProductsProvider = ({ children }: { children: any }) => {

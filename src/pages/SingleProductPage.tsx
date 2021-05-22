@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { PageHero } from "../components";
+import { PageHero, Stars } from "../components";
 import { useProductsProvider } from "../context/products_context";
 import { useParams, Link } from "react-router-dom";
 
@@ -9,9 +9,9 @@ const SingleProductPage = () => {
   const product_id = useParams();
   const id = Object.values(product_id)[0];
   const product = data?.products.find((product) => product.id === id);
-
   const [imageId, setImageId] = useState(0);
-
+  const colors = product?.fields?.colors;
+  console.log(colors);
   const updateImageId = (id: number) => {
     setImageId(id);
   };
@@ -65,8 +65,46 @@ const SingleProductPage = () => {
               />
             </div>
           </div>
-          <div>
-            <h2 className="title">Modern Poster</h2>
+          <div className="product-content-description">
+            <h2 className="title">{product?.fields?.name}</h2>
+            <Stars />
+            <p className="product-price">{product?.fields?.price / 100} €</p>
+            <p className="product-text-description">
+              {product?.fields?.description}
+            </p>
+            <p>
+              <span>Available :</span>{" "}
+              {product?.fields?.stock > 0 ? "In Stock" : "Out of Stock"}
+            </p>
+            <p>
+              <span>Bar Code :</span> {product?.id}
+            </p>
+            <p className="brand">
+              <span>Brand :</span> {product?.fields?.company}
+            </p>
+            <hr />
+            <p>
+              <span>Colors :</span>
+              <span className="colors">
+                {colors?.map((color: string) => {
+                  switch (color) {
+                    case "#000":
+                      return <span key={color} className="black-circle"></span>;
+                    case "#0000ff":
+                      return <span key={color} className="blue-circle"></span>;
+                    case "#ff0000":
+                      return <span key={color} className="red-circle"></span>;
+                    case "#ffb900":
+                      return (
+                        <span key={color} className="orange-circle"></span>
+                      );
+                    case "#00ff00":
+                      return <span key={color} className="green-circle"></span>;
+                  }
+                })}
+              </span>
+            </p>
+            <div className=""></div>
           </div>
         </div>
       </div>
@@ -80,10 +118,68 @@ const Wrapper = styled.article`
     gap: 2rem;
     grid-template-columns: 1fr;
   }
+  hr {
+    padding-bottom: 1.5rem;
+  }
   .secondary-images {
     display: grid;
     gap: 0.5rem;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .colors {
+    position: absolute;
+    margin-left: 2.5rem;
+  }
+  .orange-circle {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    background-color: var(--clr-orange);
+    border-radius: 50%;
+  }
+  .red-circle {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    background-color: red;
+    border-radius: 50%;
+  }
+  .green-circle {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    background-color: green;
+    border-radius: 50%;
+  }
+  .blue-circle {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    background-color: blue;
+    border-radius: 50%;
+  }
+  .black-circle {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 25px;
+    height: 20px;
+    width: 20px;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    background-color: #000;
+    border-radius: 50%;
   }
   .secondary-image {
     cursor: pointer;
@@ -93,17 +189,30 @@ const Wrapper = styled.article`
     border-radius: var(--radius);
   }
   .main-img {
-    border-radius: var(--radius);
+    border-radius: 0.5rem;
+    padding-top: 0.3rem;
     width: 100%;
     height: 500px;
     display: inline-block;
     object-fit: cover;
+  }
+  span {
+    font-weight: bold;
   }
   .btn {
     margin-bottom: 2rem;
   }
   .title {
     text-align: left;
+  }
+  .product-price {
+    font-weight: 500;
+  }
+  .product-text-description {
+    line-height: 2rem;
+  }
+  .brand {
+    text-transform: capitalize;
   }
   @media (min-width: 992px) {
     .btn {
