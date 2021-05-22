@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa";
 import { PageHero, Stars } from "../components";
 import { useProductsProvider } from "../context/products_context";
 import { useParams, Link } from "react-router-dom";
@@ -10,10 +11,24 @@ const SingleProductPage = () => {
   const id = Object.values(product_id)[0];
   const product = data?.products.find((product) => product.id === id);
   const [imageId, setImageId] = useState(0);
+  const [counter, setCounter] = useState(1);
   const colors = product?.fields?.colors;
-  console.log(colors);
+  console.log(data?.selected_product);
   const updateImageId = (id: number) => {
     setImageId(id);
+  };
+  const updateState = (product: any) => {
+    data?.updateSelectedProduct(product);
+  };
+  const increaseCounter = () => {
+    if (counter < 10) {
+      setCounter(counter + 1);
+    }
+  };
+  const reduceCounter = () => {
+    if (counter > 1) {
+      setCounter(counter - 1);
+    }
   };
 
   return (
@@ -104,7 +119,20 @@ const SingleProductPage = () => {
                 })}
               </span>
             </p>
-            <div className=""></div>
+            <div className="item-counter">
+              <p className="counter">
+                <button className="sign" onClick={increaseCounter}>
+                  <FaPlus />
+                </button>{" "}
+                <span className="counter-number">{counter}</span>{" "}
+                <button className="sign" onClick={reduceCounter}>
+                  <FaMinus />
+                </button>
+              </p>
+            </div>
+            <div className="btn" onClick={() => updateState(product)}>
+              Add to cart
+            </div>
           </div>
         </div>
       </div>
@@ -113,6 +141,17 @@ const SingleProductPage = () => {
 };
 
 const Wrapper = styled.article`
+  .sign {
+    margin-left: 1.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+  .counter-number {
+    font-size: 2rem;
+    margin-left: 1.5rem;
+  }
+
   .product-content {
     display: grid;
     gap: 2rem;
@@ -125,6 +164,9 @@ const Wrapper = styled.article`
     display: grid;
     gap: 0.5rem;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .secondary-image:hover {
+    opacity: 0.3;
   }
   .colors {
     position: absolute;
@@ -187,6 +229,8 @@ const Wrapper = styled.article`
     width: 100%;
     object-fit: cover;
     border-radius: var(--radius);
+    opacity: 1;
+    transition: var(--transition);
   }
   .main-img {
     border-radius: 0.5rem;
@@ -214,6 +258,11 @@ const Wrapper = styled.article`
   .brand {
     text-transform: capitalize;
   }
+  .counter {
+    font-size: 1rem;
+    color: var(--clr-grey-1);
+  }
+
   @media (min-width: 992px) {
     .btn {
       margin-bottom: 3rem;

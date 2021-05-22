@@ -14,6 +14,7 @@ interface PRODUCTS_CONTEXT_TYPE {
   selected_product: any;
   openSidebar: () => void;
   closeSidebar: () => void;
+  updateSelectedProduct: (product: any) => void;
 }
 
 const initialState = {
@@ -46,12 +47,17 @@ export const ProductsProvider = ({ children }: { children: any }) => {
       dispatch({ type: "GET_PRODUCTS_ERROR" });
     }
   };
+  const updateSelectedProduct = (product: any) => {
+    dispatch({ type: "SET_PRODUCT", payload: product });
+  };
 
   useEffect(() => {
     fetchProducts(url);
   }, []);
   return (
-    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
+    <ProductsContext.Provider
+      value={{ ...state, openSidebar, closeSidebar, updateSelectedProduct }}
+    >
       {children}
     </ProductsContext.Provider>
   );

@@ -37,6 +37,10 @@ const products_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
   if (action.type === "GET_PRODUCTS_ERROR") {
     return { ...state, products_loading: false, products_error: true };
   }
+  if (action.type === "SET_PRODUCT") {
+    return { ...state, selected_product: action.payload };
+  }
+
   return state;
 };
 
