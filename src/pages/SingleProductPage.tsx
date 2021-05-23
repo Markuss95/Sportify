@@ -82,7 +82,10 @@ const SingleProductPage = () => {
           </div>
           <div className="product-content-description">
             <h2 className="title">{product?.fields?.name}</h2>
-            <Stars />
+            <Stars
+              stars={product?.fields?.stars}
+              reviews={product?.fields?.reviews}
+            />
             <p className="product-price">{product?.fields?.price / 100} €</p>
             <p className="product-text-description">
               {product?.fields?.description}
