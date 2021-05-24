@@ -11,6 +11,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import Product from "./Product";
 import Stars from "./Stars";
+import Colors from "./Colors";
 
 export {
   Navbar,
@@ -26,4 +27,5 @@ export {
   Error,
   Product,
   Stars,
+  Colors,
 };

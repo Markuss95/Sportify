@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { PageHero, Stars } from "../components";
+import { PageHero, Stars, Colors } from "../components";
 import { useProductsProvider } from "../context/products_context";
 import { useParams, Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const SingleProductPage = () => {
   const [imageId, setImageId] = useState(0);
   const [counter, setCounter] = useState(1);
   const colors = product?.fields?.colors;
-  console.log(data?.selected_product);
+
   const updateImageId = (id: number) => {
     setImageId(id);
   };
@@ -101,27 +101,10 @@ const SingleProductPage = () => {
               <span>Brand :</span> {product?.fields?.company}
             </p>
             <hr />
-            <p>
-              <span>Colors :</span>
-              <span className="colors">
-                {colors?.map((color: string) => {
-                  switch (color) {
-                    case "#000":
-                      return <span key={color} className="black-circle"></span>;
-                    case "#0000ff":
-                      return <span key={color} className="blue-circle"></span>;
-                    case "#ff0000":
-                      return <span key={color} className="red-circle"></span>;
-                    case "#ffb900":
-                      return (
-                        <span key={color} className="orange-circle"></span>
-                      );
-                    case "#00ff00":
-                      return <span key={color} className="green-circle"></span>;
-                  }
-                })}
-              </span>
-            </p>
+            {product?.fields?.colors && (
+              <Colors colors={product?.fields?.colors} id={product?.id} />
+            )}
+
             <div className="item-counter">
               <p className="counter">
                 <button className="sign" onClick={increaseCounter}>
