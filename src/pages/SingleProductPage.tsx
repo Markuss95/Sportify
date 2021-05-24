@@ -133,9 +133,11 @@ const SingleProductPage = () => {
                 </button>
               </p>
             </div>
-            <div className="btn" onClick={() => updateState(product)}>
-              Add to cart
-            </div>
+            {product?.fields?.stock > 0 && (
+              <div className="btn" onClick={() => updateState(product)}>
+                Add to cart
+              </div>
+            )}
           </div>
         </div>
       </div>
