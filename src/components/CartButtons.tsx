@@ -6,14 +6,14 @@ const CartButtons = () => {
   const data = useProductsProvider();
   return (
     <Wrapper>
-      <Link to="/" onClick={data?.closeSidebar}>
+      <Link to="/cart" onClick={data?.closeSidebar}>
         Cart
         <span className="cart-icon">
           <FaShoppingCart />
         </span>
         <span className="cart-value">12</span>
       </Link>
-      <Link to="/" className="login-block">
+      <Link to="/login" className="login-block">
         Login
         <span className="login-icon">
           <FaUserPlus />
