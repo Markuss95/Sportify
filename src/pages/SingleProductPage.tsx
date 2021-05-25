@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { PageHero, Stars, Colors } from "../components";
+import { PageHero, Stars, Colors, Loading } from "../components";
 import { useProductsProvider } from "../context/products_context";
 import { useParams, Link } from "react-router-dom";
 
@@ -12,7 +12,6 @@ const SingleProductPage = () => {
   const product = data?.products.find((product) => product.id === id);
   const [imageId, setImageId] = useState(0);
   const [counter, setCounter] = useState(1);
-  const colors = product?.fields?.colors;
 
   const updateImageId = (id: number) => {
     setImageId(id);
@@ -30,6 +29,9 @@ const SingleProductPage = () => {
       setCounter(counter - 1);
     }
   };
+  if (data?.products_loading) {
+    return <Loading />;
+  }
 
   return (
     <Wrapper>
@@ -160,61 +162,7 @@ const Wrapper = styled.article`
   .secondary-image:hover {
     opacity: 0.3;
   }
-  .colors {
-    position: absolute;
-    margin-left: 2.5rem;
-  }
-  .orange-circle {
-    cursor: pointer;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    margin-left: 0.3rem;
-    margin-top: 0.3rem;
-    background-color: var(--clr-orange);
-    border-radius: 50%;
-  }
-  .red-circle {
-    cursor: pointer;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    margin-left: 0.3rem;
-    margin-top: 0.3rem;
-    background-color: red;
-    border-radius: 50%;
-  }
-  .green-circle {
-    cursor: pointer;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    margin-left: 0.3rem;
-    margin-top: 0.3rem;
-    background-color: green;
-    border-radius: 50%;
-  }
-  .blue-circle {
-    cursor: pointer;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    margin-left: 0.3rem;
-    margin-top: 0.3rem;
-    background-color: blue;
-    border-radius: 50%;
-  }
-  .black-circle {
-    cursor: pointer;
-    display: inline-block;
-    margin-left: 25px;
-    height: 20px;
-    width: 20px;
-    margin-left: 0.3rem;
-    margin-top: 0.3rem;
-    background-color: #000;
-    border-radius: 50%;
-  }
+
   .secondary-image {
     cursor: pointer;
     height: 75px;
