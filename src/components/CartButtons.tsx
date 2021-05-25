@@ -50,5 +50,9 @@ const Wrapper = styled.div`
     padding: 0.3rem;
     top: -0.8rem;
   }
+
+  @media (max-width: 550px) {
+    padding-top: 5rem;
+  }
 `;
 export default CartButtons;
