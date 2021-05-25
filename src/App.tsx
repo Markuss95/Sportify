@@ -7,6 +7,7 @@ import {
   About,
   SingleProductPage,
   CommingSoonPage,
+  ProductsPage,
 } from "./pages";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route exact path="/cart">
           <CommingSoonPage />
+        </Route>
+        <Route exact path="/products">
+          <ProductsPage />
         </Route>
         <Route exact path="/login">
           <CommingSoonPage />

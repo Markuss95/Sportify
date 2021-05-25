@@ -1,15 +1,17 @@
 import { useProductsProvider } from "./products_context";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import reducer from "../reducers/filter_reducer";
 import { useReducer } from "react";
 
 interface FILTER_CONTEXT_TYPE {
-  filter_products: any;
+  filtered_products: any;
   all_products: any;
+  grid_view: boolean;
 }
 const initialState = {
-  filter_products: [],
+  filtered_products: [],
   all_products: [],
+  grid_view: false,
 };
 const FilterContext = React.createContext<FILTER_CONTEXT_TYPE | null>(null);
 
@@ -28,4 +30,8 @@ export const FilterProvider = ({ children }: { children: any }) => {
       {children}
     </FilterContext.Provider>
   );
+};
+
+export const useFilterContext = () => {
+  return useContext(FilterContext);
 };

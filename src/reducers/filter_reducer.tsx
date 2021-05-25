@@ -1,6 +1,7 @@
 interface STATETYPE {
-  filter_products: any;
+  filtered_products: any;
   all_products: any;
+  grid_view: boolean;
 }
 interface ACTIONTYPE {
   type: string;
@@ -12,7 +13,7 @@ const filter_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
     return {
       ...state,
       all_products: [...action.payload],
-      filter_products: [...action.payload],
+      filtered_products: [...action.payload],
     };
   }
   return state;

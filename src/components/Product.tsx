@@ -27,7 +27,6 @@ export default Product;
 
 const Wrapper = styled.div`
   position: relative;
-  padding-top: 1.5rem;
 
   .product-link {
     img {
@@ -68,9 +67,5 @@ const Wrapper = styled.div`
     text-transform: capitalize;
     letter-spacing: 0.08rem;
     font-size: 1.1rem;
-  }
-
-  @media (min-width: 992px) {
-    padding-top: 3rem;
   }
 `;

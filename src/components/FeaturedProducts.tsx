@@ -44,6 +44,9 @@ const Wrapper = styled.div`
     margin-top: 2rem;
     display: inline;
   }
+  .title {
+    padding-bottom: 4rem;
+  }
 `;
 
 export default FeaturedProducts;
