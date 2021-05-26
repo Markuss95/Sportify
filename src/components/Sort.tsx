@@ -6,7 +6,7 @@ const Sort = () => {
   const data = useFilterContext();
   const products = data?.filtered_products;
   const grid_view = data?.grid_view;
-  console.log(data?.grid_view);
+  console.log(data?.sort);
   return (
     <Wrapper>
       <div className="btn-container">
@@ -23,7 +23,12 @@ const Sort = () => {
       <hr />
       <div className="dropdown">
         <label htmlFor="sort">Sort By</label>
-        <select name="sort" id="sort">
+        <select
+          name="sort"
+          id="sort"
+          value={data?.sort}
+          onChange={data?.updateSort}
+        >
           <option value="price-lowest">Price (Lowest)</option>
           <option value="price-highest">Price (Highest)</option>
           <option value="name-a">Name (A-Z)</option>
@@ -66,7 +71,7 @@ const Wrapper = styled.div`
     svg {
       padding: 0.2rem;
       cursor: pointer;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       border-radius: var(--radius);
       margin-right: 0.5rem;
       border: 1px solid black;

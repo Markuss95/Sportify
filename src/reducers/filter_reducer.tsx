@@ -2,6 +2,7 @@ interface STATETYPE {
   filtered_products: any;
   all_products: any;
   grid_view: boolean;
+  sort: string;
 }
 interface ACTIONTYPE {
   type: string;
@@ -26,6 +27,12 @@ const filter_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
     return {
       ...state,
       grid_view: false,
+    };
+  }
+  if (action.type === "UPDATE_SORT") {
+    return {
+      ...state,
+      sort: action.payload,
     };
   }
   return state;
