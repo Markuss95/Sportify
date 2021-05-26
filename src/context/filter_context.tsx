@@ -7,11 +7,13 @@ interface FILTER_CONTEXT_TYPE {
   filtered_products: any;
   all_products: any;
   grid_view: boolean;
+  toggleGridView: () => void;
+  toggleListView: () => void;
 }
 const initialState = {
   filtered_products: [],
   all_products: [],
-  grid_view: false,
+  grid_view: true,
 };
 const FilterContext = React.createContext<FILTER_CONTEXT_TYPE | null>(null);
 
@@ -25,8 +27,16 @@ export const FilterProvider = ({ children }: { children: any }) => {
     dispatch({ type: "LOAD_PRODUCTS", payload: products });
   }, [products]);
 
+  const toggleGridView = () => {
+    dispatch({ type: "TOGGLE_GRID_VIEW" });
+  };
+  const toggleListView = () => {
+    dispatch({ type: "TOGGLE_LIST_VIEW" });
+  };
   return (
-    <FilterContext.Provider value={{ ...state }}>
+    <FilterContext.Provider
+      value={{ ...state, toggleGridView, toggleListView }}
+    >
       {children}
     </FilterContext.Provider>
   );

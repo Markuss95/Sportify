@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const ListView = ({ products }: { products: any }) => {
-  console.log(products);
   return (
     <Wrapper>
       {products.map((product: any) => {
