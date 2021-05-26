@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ListView = ({ products }: { products: any }) => {
   console.log(products);
@@ -20,7 +21,9 @@ const ListView = ({ products }: { products: any }) => {
               <p className="product-description">
                 {product?.fields?.description.substring(0, 150)}...
               </p>
-              <button className="btn">DETAILS</button>
+              <Link to={`/products/${product?.id}`}>
+                <button className="btn">DETAILS</button>
+              </Link>
             </div>
           </div>
         );
