@@ -30,6 +30,10 @@ export const FilterProvider = ({ children }: { children: any }) => {
     dispatch({ type: "LOAD_PRODUCTS", payload: products });
   }, [products]);
 
+  useEffect(() => {
+    dispatch({ type: "SORT_PRODUCTS" });
+  }, [products, state.sort]);
+
   const toggleGridView = () => {
     dispatch({ type: "TOGGLE_GRID_VIEW" });
   };

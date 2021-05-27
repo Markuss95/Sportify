@@ -6,7 +6,6 @@ const Sort = () => {
   const data = useFilterContext();
   const products = data?.filtered_products;
   const grid_view = data?.grid_view;
-  console.log(data?.sort);
   return (
     <Wrapper>
       <div className="btn-container">
