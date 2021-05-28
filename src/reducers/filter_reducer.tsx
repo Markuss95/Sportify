@@ -3,6 +3,16 @@ interface STATETYPE {
   all_products: any;
   grid_view: boolean;
   sort: string;
+  filters: {
+    text: string;
+    company: string;
+    category: string;
+    color: string;
+    min_price: number;
+    max_price: number;
+    price: number;
+    shipping: boolean;
+  };
 }
 interface ACTIONTYPE {
   type: string;
@@ -11,10 +21,17 @@ interface ACTIONTYPE {
 
 const filter_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
   if (action.type === "LOAD_PRODUCTS") {
+    let maxPrice = action.payload.map((product: any) => product.fields.price);
+    maxPrice = Math.max(...maxPrice);
     return {
       ...state,
       all_products: [...action.payload],
       filtered_products: [...action.payload],
+      filters: {
+        ...state.filters,
+        max_price: maxPrice,
+        price: maxPrice,
+      },
     };
   }
   if (action.type === "TOGGLE_GRID_VIEW") {
@@ -83,6 +100,13 @@ const filter_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
       });
     }
     return { ...state, filtered_products: tempProducts };
+  }
+  if (action.type === "UPDATE_FILTERS") {
+    const { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, [name]: value } };
+  }
+  if (action.type === "FILTER_PRODUCTS") {
+    return { ...state };
   }
   return state;
 };
