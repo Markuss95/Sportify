@@ -106,6 +106,7 @@ const filter_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
     return { ...state, filters: { ...state.filters, [name]: value } };
   }
   if (action.type === "FILTER_PRODUCTS") {
+    console.log("filtering products");
     return { ...state };
   }
   return state;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { FaCheck } from "react-icons/fa";
 import { useFilterContext } from "../context/filter_context";
 import { getUniqueValues } from "../utlis/functions";
 const Filters = () => {
@@ -8,9 +9,13 @@ const Filters = () => {
   const companies = getUniqueValues(data?.all_products, "company");
   const colors = getUniqueValues(data?.all_products, "colors");
   const [categoryIndex, setCategoryIndex] = useState(0);
-
+  const [mainColor, setMainColor] = useState(colors[0]);
   const wrapperFunction = (e: React.MouseEvent<HTMLElement>, index: number) => {
     setCategoryIndex(index);
+    data?.updateFilters(e);
+  };
+  const colorsWrapperFunction = (e: React.MouseEvent<HTMLElement>) => {
+    setMainColor(e.currentTarget.dataset["color"]);
     data?.updateFilters(e);
   };
   return (
@@ -49,9 +54,10 @@ const Filters = () => {
               })}
             </div>
           </div>
-          <div className="company">
+          <div className="form-item">
             <h5>company</h5>
             <select
+              className="company-select"
               name="company"
               id=""
               value={data?.filters?.company}
@@ -66,6 +72,42 @@ const Filters = () => {
                 );
               })}
             </select>
+          </div>
+          <div className="form-item">
+            <h5>colors</h5>
+            <div className="colors">
+              {colors.map((color, index) => {
+                if (index === 0) {
+                  return (
+                    <button
+                      onClick={colorsWrapperFunction}
+                      key={index}
+                      data-color="all"
+                      name="color"
+                      className={`${
+                        mainColor === colors[0]
+                          ? "button-all-underline"
+                          : "button-all"
+                      }`}
+                    >
+                      All
+                    </button>
+                  );
+                }
+                return (
+                  <button
+                    key={index}
+                    name="color"
+                    className="color-circle"
+                    style={{ background: `${color}` }}
+                    onClick={colorsWrapperFunction}
+                    data-color={color}
+                  >
+                    {mainColor === color && <FaCheck />}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </form>
       </div>
@@ -84,6 +126,46 @@ const Wrapper = styled.div`
   }
   .form-item {
     margin-bottom: 1.2rem;
+  }
+  .button-all {
+    cursor: pointer;
+    border: none;
+    padding-top: 0.2rem;
+    background: none;
+    color: var(--clr-grey-5);
+  }
+  .button-all-underline {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding-top: 0.2rem;
+    color: var(--clr-grey-5);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    text-decoration: none;
+  }
+  .company-select {
+    height: 1.6rem;
+    border: none;
+    background-color: var(--clr-grey-10);
+  }
+  .colors {
+    display: flex;
+    justify-content: start;
+  }
+  .color-circle {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-left: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 50%;
+    border: none;
+    svg {
+      color: white;
+      height: 20px;
+    }
   }
 
   .categories {

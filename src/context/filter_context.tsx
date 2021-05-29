@@ -82,7 +82,14 @@ export const FilterProvider = ({ children }: { children: any }) => {
     const element = e.currentTarget as HTMLInputElement;
     const name = element.name;
     const value = element.value;
-    dispatch({ type: "UPDATE_FILTERS", payload: { name, value } });
+    const dataset = element.dataset["color"];
+
+    if (value) {
+      dispatch({ type: "UPDATE_FILTERS", payload: { name, value } });
+    }
+    if (dataset) {
+      dispatch({ type: "UPDATE_FILTERS", payload: { name, value: dataset } });
+    }
   };
   const clearFilters = () => {};
   return (
