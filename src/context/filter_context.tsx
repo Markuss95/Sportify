@@ -87,6 +87,9 @@ export const FilterProvider = ({ children }: { children: any }) => {
     if (value) {
       dispatch({ type: "UPDATE_FILTERS", payload: { name, value } });
     }
+    if (value === "") {
+      dispatch({ type: "UPDATE_FILTERS", payload: { name, value } });
+    }
     if (dataset) {
       dispatch({ type: "UPDATE_FILTERS", payload: { name, value: dataset } });
     }

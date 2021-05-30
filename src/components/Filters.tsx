@@ -152,14 +152,13 @@ const Filters = () => {
 };
 const Wrapper = styled.div`
   .text-input {
+    padding-left: 0.7rem;
     height: 2rem;
     border: none;
     border-radius: var(--radius);
     background-color: var(--clr-grey-10);
   }
-  .text-input::placeholder {
-    padding-left: 0.7rem;
-  }
+
   .range-price {
     margin-bottom: 0.5rem;
   }
