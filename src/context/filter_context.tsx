@@ -81,7 +81,7 @@ export const FilterProvider = ({ children }: { children: any }) => {
   ) => {
     const element = e.currentTarget as HTMLInputElement;
     const name = element.name;
-    const value = element.value;
+    let value = element.value;
     const dataset = element.dataset["color"];
 
     if (value) {
@@ -89,6 +89,12 @@ export const FilterProvider = ({ children }: { children: any }) => {
     }
     if (dataset) {
       dispatch({ type: "UPDATE_FILTERS", payload: { name, value: dataset } });
+    }
+    if (name === "price") {
+      dispatch({
+        type: "UPDATE_FILTERS",
+        payload: { name, value: parseInt(value, 10) },
+      });
     }
   };
   const clearFilters = () => {};

@@ -109,6 +109,20 @@ const Filters = () => {
               })}
             </div>
           </div>
+          <div className="form-item">
+            <h5>price</h5>
+            <p className="range-price">
+              {data?.filters?.price && data?.filters?.price / 100} €
+            </p>
+            <input
+              type="range"
+              name="price"
+              onChange={data?.updateFilters}
+              min={data?.filters?.min_price}
+              max={data?.filters?.max_price}
+              value={data?.filters?.price}
+            ></input>
+          </div>
         </form>
       </div>
     </Wrapper>
@@ -123,6 +137,9 @@ const Wrapper = styled.div`
   }
   .text-input::placeholder {
     padding-left: 0.7rem;
+  }
+  .range-price {
+    margin-bottom: 0.5rem;
   }
   .form-item {
     margin-bottom: 1.2rem;
