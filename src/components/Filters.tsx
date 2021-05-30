@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCheck } from "react-icons/fa";
 import { useFilterContext } from "../context/filter_context";
 import { getUniqueValues } from "../utlis/functions";
@@ -10,6 +10,7 @@ const Filters = () => {
   const colors = getUniqueValues(data?.all_products, "colors");
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [mainColor, setMainColor] = useState(colors[0]);
+
   const wrapperFunction = (e: React.MouseEvent<HTMLElement>, index: number) => {
     setCategoryIndex(index);
     data?.updateFilters(e);
@@ -18,6 +19,15 @@ const Filters = () => {
     setMainColor(e.currentTarget.dataset["color"]);
     data?.updateFilters(e);
   };
+  useEffect(() => {
+    if (data?.filters?.category === "all") {
+      setCategoryIndex(0);
+    }
+    if (data?.filters?.color === "all") {
+      setMainColor(colors[0]);
+    }
+  }, [data]);
+
   return (
     <Wrapper>
       <div>
@@ -37,14 +47,13 @@ const Filters = () => {
             <div className="categories">
               {/*don't get it why I can't make category:string, typeof category returns "string" and string only*/}
               {categories.map((category: any, index: number) => {
-                console.log();
                 return (
                   <div key={index}>
                     <button
                       name="category"
                       type="button"
                       value={category}
-                      className={`${index === categoryIndex && "underline"}`}
+                      className={`${index === categoryIndex && "underline"}  `}
                       onClick={(e) => wrapperFunction(e, index)}
                     >
                       {category}
@@ -123,7 +132,20 @@ const Filters = () => {
               value={data?.filters?.price}
             ></input>
           </div>
+          <div className="form-item shipping">
+            <label htmlFor="shipping">free shipping</label>
+            <input
+              type="checkbox"
+              name="shipping"
+              id="shipping"
+              onChange={data?.updateFilters}
+              checked={data?.filters?.shipping}
+            />
+          </div>
         </form>
+        <button type="button" className="btn" onClick={data?.clearFilters}>
+          clear filters
+        </button>
       </div>
     </Wrapper>
   );
@@ -140,6 +162,10 @@ const Wrapper = styled.div`
   }
   .range-price {
     margin-bottom: 0.5rem;
+  }
+  .btn {
+    background-color: #b22222;
+    padding: 0.225rem 0.45rem;
   }
   .form-item {
     margin-bottom: 1.2rem;
@@ -202,7 +228,13 @@ const Wrapper = styled.div`
     .underline {
       border-bottom: 1px solid currentColor;
       padding-bottom: 1px;
-      text-decoration: none;
+    }
+  }
+  .shipping {
+    input {
+      width: 15px;
+      height: 15px;
+      margin-left: 0.6rem;
     }
   }
 `;

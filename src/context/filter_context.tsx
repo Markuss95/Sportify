@@ -96,8 +96,17 @@ export const FilterProvider = ({ children }: { children: any }) => {
         payload: { name, value: parseInt(value, 10) },
       });
     }
+    if (name === "shipping") {
+      dispatch({
+        type: "UPDATE_FILTERS",
+        payload: { name, value: !state.filters.shipping },
+      });
+    }
   };
-  const clearFilters = () => {};
+
+  const clearFilters = () => {
+    dispatch({ type: "CLEAR_FILTERS" });
+  };
   return (
     <FilterContext.Provider
       value={{

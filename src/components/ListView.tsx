@@ -61,5 +61,10 @@ const Wrapper = styled.div`
       margin-bottom: 3rem;
     }
   }
+  @media (max-width: 500px) {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: var(--max-width);
+  }
 `;
 export default ListView;

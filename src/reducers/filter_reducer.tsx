@@ -109,6 +109,20 @@ const filter_reducer = (state: STATETYPE, action: ACTIONTYPE) => {
     console.log("filtering products");
     return { ...state };
   }
+  if (action.type === "CLEAR_FILTERS") {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: "",
+        company: "all",
+        category: "all",
+        color: "all",
+        price: state.filters.max_price,
+        shipping: false,
+      },
+    };
+  }
   return state;
 };
 

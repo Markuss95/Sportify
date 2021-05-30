@@ -19,5 +19,10 @@ const Wrapper = styled.div`
   .xy {
     padding-top: 10rem;
   }
+  @media (max-width: 500px) {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: var(--max-width);
+  }
 `;
 export default GridView;
