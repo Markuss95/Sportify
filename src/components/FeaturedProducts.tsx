@@ -26,7 +26,7 @@ const FeaturedProducts = () => {
           }
         })}
       </div>
-      <Link to="/products">
+      <Link to="/products" className="btn-wrapper">
         <div className="btn">ALL PRODUCTS</div>
       </Link>
     </Wrapper>
@@ -44,8 +44,11 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
   .btn {
+  }
+  .btn-wrapper {
+    display: flex;
+    justify-content: center;
     margin-top: 2rem;
-    display: inline;
   }
   .title {
     padding-bottom: 4rem;
