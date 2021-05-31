@@ -8,6 +8,7 @@ interface FILTER_CONTEXT_TYPE {
   all_products: any;
   grid_view: boolean;
   sort: string;
+  loading: boolean | undefined;
   filters: {
     text: string;
     company: string;
@@ -50,6 +51,7 @@ const FilterContext = React.createContext<FILTER_CONTEXT_TYPE | null>(null);
 export const FilterProvider = ({ children }: { children: any }) => {
   // Typescript messing with destructering , have to take this approach for some reason
   const data = useProductsProvider();
+  const loading = data?.products_loading;
   const products = data?.products;
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -114,6 +116,7 @@ export const FilterProvider = ({ children }: { children: any }) => {
     <FilterContext.Provider
       value={{
         ...state,
+        loading,
         toggleGridView,
         toggleListView,
         updateSort,
